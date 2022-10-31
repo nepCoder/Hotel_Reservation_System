@@ -22,8 +22,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Content Management
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-controller="Customers" asp-action="Index">Customer</a></li>
+                            <li><a class="dropdown-item" href="#">Room</a></li>
+                            <li><a class="dropdown-item" href="#">Booking</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Invoice</a></li>
+                          </ul>
                         </li>
                     </ul>
                 </div>
