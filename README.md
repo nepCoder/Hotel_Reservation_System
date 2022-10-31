@@ -10,7 +10,7 @@ ASP.NET Core MVC Application using C#
 6. Display list of customers with pending bills
 and many more
 
-**Approach **: Database First
+**Approach**: Database First
 **Database Framework** : EntityFrameworkCore
 
 >Programming Concepts Used
