@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using HotelReservation.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Hotel_Reservation_System.Models;
-
 namespace Hotel_Reservation_System.Context
 {
     public partial class AppDbContext : DbContext

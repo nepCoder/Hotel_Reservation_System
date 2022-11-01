@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Models;
 using Hotel_Reservation_System.Repositories.IRepositories;
+using HotelReservation.Entities;
 
 namespace Hotel_Reservation_System.Controllers
 {

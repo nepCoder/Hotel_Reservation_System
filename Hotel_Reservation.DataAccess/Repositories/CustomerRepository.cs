@@ -1,8 +1,7 @@
 ﻿using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Models;
 using Hotel_Reservation_System.Repositories.IRepositories;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Core.Types;
+using HotelReservation.Entities;
+
 
 namespace Hotel_Reservation_System.Repositories
 {

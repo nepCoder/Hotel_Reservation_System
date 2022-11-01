@@ -1,8 +1,6 @@
 ﻿using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Models;
 using Hotel_Reservation_System.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using System.Linq.Expressions;
 
 namespace Hotel_Reservation_System.Repositories
