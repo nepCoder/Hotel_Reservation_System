@@ -2,17 +2,17 @@
 
 ASP.NET Core MVC Application using C#
 
->Features:
+> Features:
 
--Look for Available Rooms based on Category
--Book Rooms
--Create Invoice
--CheckOut Payment
--Display Total Number of Available Room Today
--Display list of customers with pending bills
+- Look for Available Rooms based on Category
+- Book Rooms
+- Create Invoice
+- CheckOut Payment
+- Display Total Number of Available Room Today
+- Display list of customers with pending bills
 `and many more`
 
->Programming Concepts Used
+> Programming Concepts Used
 
 1. Repository Pattern
 2. UnitOfWork
