@@ -10,6 +10,7 @@ ASP.NET Core MVC Application using C#
 -Display Total Number of Available Room Today
 -Display list of customers with pending bills
 `and many more`
+
 >Programming Concepts Used
 1.Repository Pattern
 2.UnitOfWork
