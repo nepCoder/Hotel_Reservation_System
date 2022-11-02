@@ -19,5 +19,7 @@ ASP.NET Core MVC Application using C#
 3. Dependency Injection
 `and many more...`
 
-- **Approach:** Database First
-- **Database Framework:** EntityFrameworkCore
+> **Approach:** 
+- Database First
+> **Database Framework:** 
+- EntityFrameworkCore
