@@ -3,6 +3,7 @@
 ASP.NET Core MVC Application using C#
 
 >Features:
+
 -Look for Available Rooms based on Category
 -Book Rooms
 -Create Invoice
@@ -12,6 +13,7 @@ ASP.NET Core MVC Application using C#
 `and many more`
 
 >Programming Concepts Used
+
 1.Repository Pattern
 2.UnitOfWork
 3.Dependency Injection
