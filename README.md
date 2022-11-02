@@ -14,9 +14,9 @@ ASP.NET Core MVC Application using C#
 
 >Programming Concepts Used
 
-1.Repository Pattern
-2.UnitOfWork
-3.Dependency Injection
+1. Repository Pattern
+2. UnitOfWork
+3. Dependency Injection
 `and many more...`
 
 - **Approach:** Database First
