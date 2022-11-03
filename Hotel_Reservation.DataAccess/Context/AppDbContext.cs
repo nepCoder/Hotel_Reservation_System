@@ -1,7 +1,7 @@
 ﻿
 using HotelReservation.Entities;
 using Microsoft.EntityFrameworkCore;
-namespace Hotel_Reservation_System.Context
+namespace Hotel_Reservation.DataAccess.Context
 {
     public partial class AppDbContext : DbContext
     {
@@ -9,9 +9,9 @@ namespace Hotel_Reservation_System.Context
         {
         }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
 
         public virtual DbSet<Booking> Bookings { get; set; } = null!;

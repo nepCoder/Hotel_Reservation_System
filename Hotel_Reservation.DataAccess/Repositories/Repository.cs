@@ -1,9 +1,9 @@
-﻿using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Repositories.IRepositories;
+﻿using Hotel_Reservation.DataAccess.Context;
+using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Hotel_Reservation_System.Repositories
+namespace Hotel_Reservation.DataAccess.Repositories
 {
     public class Repository<T>:IRepository<T> where T:class  
     {
