@@ -25,14 +25,14 @@
                         
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Content Management
+                            Manage
                           </a>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-controller="Customers" asp-action="Index">Customer</a></li>
-                            <li><a class="dropdown-item" href="#">Room</a></li>
-                            <li><a class="dropdown-item" href="#">Booking</a></li>
+                            <li><a class="dropdown-item" asp-controller="Rooms" asp-action="Index">Room</a></li>
+                            <li><a class="dropdown-item" asp-controller="Bookings" asp-action="Index">Booking</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Invoice</a></li>
+                            <li><a class="dropdown-item" asp-controller="Invoices" asp-action="Index">Invoice</a></li>
                           </ul>
                         </li>
                     </ul>
