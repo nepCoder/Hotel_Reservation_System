@@ -1,9 +1,6 @@
 ﻿using Hotel_Reservation_System.Context;
 using Hotel_Reservation_System.Models;
 using Hotel_Reservation_System.Repositories.IRepositories;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Core.Types;
-
 namespace Hotel_Reservation_System.Repositories
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
