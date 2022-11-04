@@ -6,39 +6,40 @@
     <title>@ViewData["Title"] - Hotel_Reservation_System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootswatch_theme.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Hotel_Reservation_System.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hotel_Reservation_System</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Manage
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" asp-controller="Customers" asp-action="Index">Customer</a></li>
-                            <li><a class="dropdown-item" asp-controller="Rooms" asp-action="Index">Room</a></li>
-                            <li><a class="dropdown-item" asp-controller="Bookings" asp-action="Index">Booking</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="Invoices" asp-action="Index">Invoice</a></li>
-                          </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-controller="Home" asp-action="Index">HotelReservationSystem</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" asp-controller="Home" asp-action="Index">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Manage</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" asp-controller="Customers" asp-action="Index">Customer</a>
+            <a class="dropdown-item" asp-controller="Rooms" asp-action="Index">Room</a>
+            <a class="dropdown-item" asp-controller="RoomCategories" asp-action="Index">Room Category</a>
+            <a class="dropdown-item" asp-controller="Bookings" asp-action="Index">Booking</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-controller="Invoices" asp-action="Index">Invoice</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
