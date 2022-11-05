@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Models;
+using Hotel_Reservation.DataAccess.Context;
+using HotelReservation.Entities;
 
 namespace Hotel_Reservation_System.Controllers
 {
@@ -161,14 +157,14 @@ namespace Hotel_Reservation_System.Controllers
             {
                 _context.Bookings.Remove(booking);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BookingExists(int id)
         {
-          return _context.Bookings.Any(e => e.Id == id);
+            return _context.Bookings.Any(e => e.Id == id);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Hotel_Reservation_System.Models.Booking
+﻿@model HotelReservation.Entities.Booking
 
 @{
     ViewData["Title"] = "Create";
@@ -14,11 +14,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId">
+                    <option selected disabled>--SelectCustomerId--</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="RoomId" class="control-label"></label>
-                <select asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId"></select>
+                <select asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId">
+                    <option selected disabled>--SelectRoomId--</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -32,5 +36,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

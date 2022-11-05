@@ -1,4 +1,4 @@
-﻿@model Hotel_Reservation_System.Models.RoomCategory
+﻿@model HotelReservation.Entities.RoomCategory
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,5 +35,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

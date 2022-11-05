@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using HotelReservation.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Hotel_Reservation_System.Models;
-
-namespace Hotel_Reservation_System.Context
+namespace Hotel_Reservation.DataAccess.Context
 {
     public partial class AppDbContext : DbContext
     {
@@ -12,9 +9,9 @@ namespace Hotel_Reservation_System.Context
         {
         }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+
         }
 
         public virtual DbSet<Booking> Bookings { get; set; } = null!;

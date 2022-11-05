@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel_Reservation_System", "Hotel_Reservation_System\Hotel_Reservation_System.csproj", "{AFE32CE1-14F0-486E-956E-EC9467B75B3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel_Reservation_System", "Hotel_Reservation_System\Hotel_Reservation_System.csproj", "{AFE32CE1-14F0-486E-956E-EC9467B75B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelReservation.Entities", "HotelReservation.Entities\HotelReservation.Entities.csproj", "{7968BEE6-FA8A-48F2-A60D-1525259F33C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel_Reservation.DataAccess", "Hotel_Reservation.DataAccess\Hotel_Reservation.DataAccess.csproj", "{2CCCFCAC-FAF1-421D-95CD-72AB22D6F6AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{AFE32CE1-14F0-486E-956E-EC9467B75B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFE32CE1-14F0-486E-956E-EC9467B75B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFE32CE1-14F0-486E-956E-EC9467B75B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7968BEE6-FA8A-48F2-A60D-1525259F33C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7968BEE6-FA8A-48F2-A60D-1525259F33C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7968BEE6-FA8A-48F2-A60D-1525259F33C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7968BEE6-FA8A-48F2-A60D-1525259F33C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CCCFCAC-FAF1-421D-95CD-72AB22D6F6AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CCCFCAC-FAF1-421D-95CD-72AB22D6F6AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CCCFCAC-FAF1-421D-95CD-72AB22D6F6AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CCCFCAC-FAF1-421D-95CD-72AB22D6F6AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
