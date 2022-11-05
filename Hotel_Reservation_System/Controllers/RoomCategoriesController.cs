@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Models;
+using Hotel_Reservation.DataAccess.Context;
+using HotelReservation.Entities;
 
 namespace Hotel_Reservation_System.Controllers
 {
@@ -17,7 +17,7 @@ namespace Hotel_Reservation_System.Controllers
         // GET: RoomCategories
         public async Task<IActionResult> Index()
         {
-              return View(await _context.RoomCategories.ToListAsync());
+            return View(await _context.RoomCategories.ToListAsync());
         }
 
         // GET: RoomCategories/Details/5
@@ -143,14 +143,14 @@ namespace Hotel_Reservation_System.Controllers
             {
                 _context.RoomCategories.Remove(roomCategory);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool RoomCategoryExists(int id)
         {
-          return _context.RoomCategories.Any(e => e.Id == id);
+            return _context.RoomCategories.Any(e => e.Id == id);
         }
     }
 }

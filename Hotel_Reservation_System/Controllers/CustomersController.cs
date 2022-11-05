@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Hotel_Reservation_System.Models;
-using Hotel_Reservation_System.Repositories.IRepositories;
+using HotelReservation.Entities;
+using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 
 namespace Hotel_Reservation_System.Controllers
 {

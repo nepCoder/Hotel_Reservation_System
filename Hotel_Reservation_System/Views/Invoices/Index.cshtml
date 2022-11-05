@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hotel_Reservation_System.Models.Invoice>
+﻿@model IEnumerable<HotelReservation.Entities.Invoice>
 
 @{
     ViewData["Title"] = "Index";
@@ -38,37 +38,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NetAmount)
-            </td>
-                       
-            <td>
-            @Html.DisplayFor(modelItem => item.Status)
-            </td>
-                       
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckOutTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
-            </td>
-            <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetAmount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Id)
+                </td>
+                <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

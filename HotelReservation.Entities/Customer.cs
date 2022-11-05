@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hotel_Reservation_System.Models
+namespace HotelReservation.Entities
 {
     public partial class Customer
     {

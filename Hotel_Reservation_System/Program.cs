@@ -1,6 +1,6 @@
-using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Repositories;
-using Hotel_Reservation_System.Repositories.IRepositories;
+using Hotel_Reservation.DataAccess.Context;
+using Hotel_Reservation.DataAccess.Repositories;
+using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,4 @@
-﻿using Hotel_Reservation_System.Models;
+﻿using HotelReservation.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

@@ -1,7 +1,9 @@
-﻿using Hotel_Reservation_System.Context;
-using Hotel_Reservation_System.Models;
-using Hotel_Reservation_System.Repositories.IRepositories;
-namespace Hotel_Reservation_System.Repositories
+﻿using Hotel_Reservation.DataAccess.Context;
+using Hotel_Reservation.DataAccess.Repositories.IRepositories;
+using HotelReservation.Entities;
+
+
+namespace Hotel_Reservation.DataAccess.Repositories
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
@@ -24,7 +26,6 @@ namespace Hotel_Reservation_System.Repositories
             return _context.Customers.Any(e => e.Id == id);
         }
 
-        //This should be implemented in UnitofWork
         
     }
 }
