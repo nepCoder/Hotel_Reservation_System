@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hotel_Reservation_System</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HotelReservationSystem</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,10 +29,11 @@
                           </a>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-controller="Customers" asp-action="Index">Customer</a></li>
-                            <li><a class="dropdown-item" href="#">Room</a></li>
-                            <li><a class="dropdown-item" href="#">Booking</a></li>
+                            <li><a class="dropdown-item" asp-controller="Rooms" asp-action="Index">Room</a></li>
+                            <li><a class="dropdown-item" asp-controller="RoomCategories" asp-action="Index">Room Category</a></li>
+                            <li><a class="dropdown-item" asp-controller="Bookings" asp-action="Index">Booking</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Invoice</a></li>
+                            <li><a class="dropdown-item" asp-controller="Invoices" asp-action="Index">Invoice</a></li>
                           </ul>
                         </li>
                     </ul>
