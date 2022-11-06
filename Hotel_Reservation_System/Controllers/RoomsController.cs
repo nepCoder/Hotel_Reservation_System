@@ -3,36 +3,40 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Hotel_Reservation.DataAccess.Context;
 using HotelReservation.Entities;
+using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 
 namespace Hotel_Reservation_System.Controllers
 {
     public class RoomsController : Controller
     {
-        private readonly AppDbContext _context;
+        #region private fields
+        private readonly IUnitOfWork _unit;
+        #endregion
 
-        public RoomsController(AppDbContext context)
+        #region contructor
+        public RoomsController(IUnitOfWork unit)
         {
-            _context = context;
+            _unit = unit;
         }
+        #endregion
 
-        // GET: Rooms
-        public async Task<IActionResult> Index()
+        #region GET: Rooms
+        public IActionResult Index()
         {
-            var appDbContext = _context.Rooms.Include(r => r.RoomCategory);
-            return View(await appDbContext.ToListAsync());
+            IEnumerable<Room> roomList = _unit.Room.GetAll();
+            return View(roomList);
         }
+        #endregion
 
-        // GET: Rooms/Details/5
-        public async Task<IActionResult> Details(int? id)
+        #region GET: Rooms/Details/5
+        public IActionResult Details(int? id)
         {
-            if (id == null || _context.Rooms == null)
+            if (id == null || _unit.Room == null)
             {
                 return NotFound();
             }
 
-            var room = await _context.Rooms
-                .Include(r => r.RoomCategory)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var room = _unit.Room.GetFirstOrDefault(m => m.Id == id);
             if (room == null)
             {
                 return NotFound();
@@ -40,54 +44,86 @@ namespace Hotel_Reservation_System.Controllers
 
             return View(room);
         }
+        #endregion
 
-        // GET: Rooms/Create
+        #region GET: Rooms/Create
         public IActionResult Create()
         {
-            ViewData["RoomCategoryId"] = new SelectList(_context.RoomCategories, "Id", "Id");
+            
+            IEnumerable<RoomCategory> roomCategoryList = _unit.RoomCategory.GetAll();
+
+            /*
+             * Initializes a new instance of the SelectList class by using 
+             * the specified items for the list, 
+             * the data value field, 
+             * and the data text field.
+             */
+
+            ViewData["RoomCategoryId"] = new SelectList(roomCategoryList, "Id", "CategoryName");
             return View();
         }
+        #endregion
 
-        // POST: Rooms/Create
+        #region POST: Rooms/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RoomName,RoomDescription,RoomCategoryId,Status,Cost")] Room room)
+        public IActionResult Create([Bind("Id,RoomName,RoomDescription,RoomCategoryId,Status,Cost")] Room room)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(room);
-                await _context.SaveChangesAsync();
+                _unit.Room.Add(room);
+                _unit.Commit();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomCategoryId"] = new SelectList(_context.RoomCategories, "Id", "Id", room.RoomCategoryId);
+
+            /*
+             * new SelectList(IEnumerable, string, string, object)
+             * Initializes a new instance of the SelectList class by using 
+             * the specified items for the list, 
+             * the data value field, 
+             * the data text field, and 
+             * a selected value.
+             */
+            ViewData["RoomCategoryId"] = new SelectList(_unit.Room.GetAll(), "Id", "CategoryName", room.RoomCategoryId);
             return View(room);
         }
+        #endregion
 
-        // GET: Rooms/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        #region GET: Rooms/Edit/5
+        public IActionResult Edit(int? id)
         {
-            if (id == null || _context.Rooms == null)
+            if (id == null || _unit.Room == null)
             {
                 return NotFound();
             }
 
-            var room = await _context.Rooms.FindAsync(id);
+            var room = _unit.Room.GetFirstOrDefault(m => m.Id == id);
             if (room == null)
             {
                 return NotFound();
             }
-            ViewData["RoomCategoryId"] = new SelectList(_context.RoomCategories, "Id", "Id", room.RoomCategoryId);
+
+            IEnumerable<SelectListItem> categoryList = _unit.RoomCategory.GetAll().Select(
+                m => new SelectListItem
+                {
+                   Text = m.CategoryName,
+                   Value = m.Id.ToString()
+                });
+
+
+            ViewBag.RoomCategory = categoryList;
             return View(room);
         }
+        #endregion
 
-        // POST: Rooms/Edit/5
+        #region POST: Rooms/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RoomName,RoomDescription,RoomCategoryId,Status,Cost")] Room room)
+        public IActionResult Edit(int id, [Bind("Id,RoomName,RoomDescription,RoomCategoryId,Status,Cost")] Room room)
         {
             if (id != room.Id)
             {
@@ -98,8 +134,8 @@ namespace Hotel_Reservation_System.Controllers
             {
                 try
                 {
-                    _context.Update(room);
-                    await _context.SaveChangesAsync();
+                    _unit.Room.Update(room);
+                    _unit.Commit();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -114,21 +150,20 @@ namespace Hotel_Reservation_System.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomCategoryId"] = new SelectList(_context.RoomCategories, "Id", "Id", room.RoomCategoryId);
+            ViewData["RoomCategoryId"] = new SelectList(_unit.RoomCategory.GetAll(), "Id", "CategoryName", room.RoomCategoryId);
             return View(room);
         }
+        #endregion
 
-        // GET: Rooms/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        #region GET: Rooms/Delete/5
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.Rooms == null)
+            if (id == null || _unit.Room == null)
             {
                 return NotFound();
             }
 
-            var room = await _context.Rooms
-                .Include(r => r.RoomCategory)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var room = _unit.Room.GetFirstOrDefault(m => m.Id == id);
             if (room == null)
             {
                 return NotFound();
@@ -136,29 +171,34 @@ namespace Hotel_Reservation_System.Controllers
 
             return View(room);
         }
+        #endregion
 
-        // POST: Rooms/Delete/5
+        #region POST: Rooms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            if (_context.Rooms == null)
+            if (_unit.Room == null)
             {
-                return Problem("Entity set 'AppDbContext.Rooms'  is null.");
+                return Problem("Entity set '_unit.Room'  is null.");
             }
-            var room = await _context.Rooms.FindAsync(id);
+            var room = _unit.Room.GetFirstOrDefault(m => m.Id == id);
             if (room != null)
             {
-                _context.Rooms.Remove(room);
+                _unit.Room.Remove(room);
             }
 
-            await _context.SaveChangesAsync();
+            _unit.Commit();
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+        #region RoomExists(id);
         private bool RoomExists(int id)
         {
-            return _context.Rooms.Any(e => e.Id == id);
+            return _unit.Room.Contains(_unit.Room.GetFirstOrDefault(m => m.Id == id));
         }
+        #endregion
     }
+
 }

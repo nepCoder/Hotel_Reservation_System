@@ -7,21 +7,26 @@ namespace Hotel_Reservation_System.Controllers
 {
     public class CustomersController : Controller
     {
+        #region private fields
         private readonly IUnitOfWork _unit;
+        #endregion
 
+        #region Constructor
         public CustomersController(IUnitOfWork unit)
         {
             _unit = unit;
         }
+        #endregion
 
-        // GET: Customers
+        #region GET:Customers
         public IActionResult Index()
         {
 
             return View(_unit.Customer.GetAll());
         }
+        #endregion
 
-        // GET: Customers/Details/5
+        #region GET: Customers/Details/5
         public IActionResult Details(int id)
         {
             if (_unit.Customer == null)
@@ -38,15 +43,16 @@ namespace Hotel_Reservation_System.Controllers
 
             return View(customer);
         }
+        #endregion
 
-        // GET: Customers/Create
+        #region GET: Customer/Create
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
-        // POST: Customers/Create
-        
+        #region POST: Customers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("FullName,Address,Phone")] Customer customer)
@@ -59,8 +65,9 @@ namespace Hotel_Reservation_System.Controllers
             }
             return View(customer);
         }
+        #endregion
 
-        // GET: Customers/Edit/5
+        #region GET: Customers/Edit/5
         public IActionResult Edit(int id)
         {
             if (_unit.Customer == null)
@@ -75,9 +82,10 @@ namespace Hotel_Reservation_System.Controllers
             }
             return View(customer);
         }
+        #endregion
+                
+        #region POST: Customers/Edit/5
 
-        // POST: Customers/Edit/5
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,FullName,Address,Phone")] Customer customer)
@@ -109,8 +117,9 @@ namespace Hotel_Reservation_System.Controllers
             }
             return View(customer);
         }
-
-        // GET: Customers/Delete/5
+        #endregion
+                
+        #region GET: Customers/Delete/5
         public IActionResult Delete(int id)
         {
             if (_unit.Customer == null)
@@ -127,8 +136,10 @@ namespace Hotel_Reservation_System.Controllers
 
             return View(customer);
         }
+        #endregion
 
-        // POST: Customers/Delete/5
+        #region POST: Customers/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
@@ -147,9 +158,13 @@ namespace Hotel_Reservation_System.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region CustomerExists(id)
         private bool CustomerExists(int id)
         {
           return _unit.Customer.CustomerExists(id);
         }
+        #endregion
     }
 }

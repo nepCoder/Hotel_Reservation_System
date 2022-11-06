@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Hotel_Reservation.DataAccess.Repositories
 {
-    public class Repository<T>:IRepository<T> where T:class  
+    public class Repository<T> : IRepository<T> where T:class  
     {
         private readonly AppDbContext _context;
         internal DbSet<T> dbSet;
@@ -18,11 +18,12 @@ namespace Hotel_Reservation.DataAccess.Repositories
         public void Add(T entity)
         {
            dbSet.Add(entity);
-           //use method from UnitOfWork to SaveChanges
-
         }
 
-        
+        public bool Contains(T entity)
+        {
+            return dbSet.Contains(entity);
+        }
 
         public IEnumerable<T> GetAll()
         {

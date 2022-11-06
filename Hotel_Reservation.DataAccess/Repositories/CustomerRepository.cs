@@ -25,7 +25,6 @@ namespace Hotel_Reservation.DataAccess.Repositories
         {
             return _context.Customers.Any(e => e.Id == id);
         }
-
-        
+            
     }
 }

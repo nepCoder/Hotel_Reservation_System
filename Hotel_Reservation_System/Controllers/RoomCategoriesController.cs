@@ -2,34 +2,41 @@
 using Microsoft.EntityFrameworkCore;
 using Hotel_Reservation.DataAccess.Context;
 using HotelReservation.Entities;
+using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 
 namespace Hotel_Reservation_System.Controllers
 {
     public class RoomCategoriesController : Controller
     {
-        private readonly AppDbContext _context;
+        #region private fields
+        private readonly IUnitOfWork _unit;
+        #endregion
 
-        public RoomCategoriesController(AppDbContext context)
+        #region constructor
+        public RoomCategoriesController(IUnitOfWork unit)
         {
-            _context = context;
+            _unit = unit;
+        }
+        #endregion
+
+        #region GET: RoomCategories
+        public IActionResult Index()
+        {
+            return View(_unit.RoomCategory.GetAll());
         }
 
-        // GET: RoomCategories
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.RoomCategories.ToListAsync());
-        }
+        #endregion
 
-        // GET: RoomCategories/Details/5
-        public async Task<IActionResult> Details(int? id)
+        #region GET: RoomCategories/Details/5
+        public IActionResult Details(int? id)
         {
-            if (id == null || _context.RoomCategories == null)
+            if (id == null || _unit.RoomCategory == null)
             {
                 return NotFound();
             }
 
-            var roomCategory = await _context.RoomCategories
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var roomCategory = _unit.RoomCategory
+                .GetFirstOrDefault(m => m.Id == id);
             if (roomCategory == null)
             {
                 return NotFound();
@@ -38,50 +45,56 @@ namespace Hotel_Reservation_System.Controllers
             return View(roomCategory);
         }
 
-        // GET: RoomCategories/Create
+        #endregion
+
+        #region GET: RoomCategories/Create
         public IActionResult Create()
         {
             return View();
         }
+        #endregion
 
-        // POST: RoomCategories/Create
+        #region POST: RoomCategories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryName,CategoryDescription")] RoomCategory roomCategory)
+        public IActionResult Create([Bind("Id,CategoryName,CategoryDescription")] RoomCategory roomCategory)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(roomCategory);
-                await _context.SaveChangesAsync();
+                _unit.RoomCategory.Add(roomCategory);
+                _unit.Commit();
                 return RedirectToAction(nameof(Index));
             }
             return View(roomCategory);
         }
 
-        // GET: RoomCategories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        #endregion
+
+        #region GET: RoomCategories/Edit/5
+        public IActionResult Edit(int? id)
         {
-            if (id == null || _context.RoomCategories == null)
+            if (id == null || _unit.RoomCategory == null)
             {
                 return NotFound();
             }
 
-            var roomCategory = await _context.RoomCategories.FindAsync(id);
+            var roomCategory = _unit.RoomCategory.GetFirstOrDefault(m => m.Id == id);
             if (roomCategory == null)
             {
                 return NotFound();
             }
             return View(roomCategory);
         }
+        #endregion
 
-        // POST: RoomCategories/Edit/5
+        #region POST: RoomCategories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryName,CategoryDescription")] RoomCategory roomCategory)
+        public IActionResult Edit(int id, [Bind("Id,CategoryName,CategoryDescription")] RoomCategory roomCategory)
         {
             if (id != roomCategory.Id)
             {
@@ -92,8 +105,8 @@ namespace Hotel_Reservation_System.Controllers
             {
                 try
                 {
-                    _context.Update(roomCategory);
-                    await _context.SaveChangesAsync();
+                    _unit.RoomCategory.Update(roomCategory);
+                    _unit.Commit();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,47 +123,52 @@ namespace Hotel_Reservation_System.Controllers
             }
             return View(roomCategory);
         }
+        #endregion
 
-        // GET: RoomCategories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        #region GET: RoomCategories/Delete/5
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.RoomCategories == null)
+            if (id == null || _unit.RoomCategory == null)
             {
                 return NotFound();
             }
 
-            var roomCategory = await _context.RoomCategories
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var roomCategory = _unit.RoomCategory.GetFirstOrDefault(m => m.Id == id);
             if (roomCategory == null)
             {
-                return NotFound();
+                return NotFound(); 
             }
 
             return View(roomCategory);
         }
+        #endregion
 
-        // POST: RoomCategories/Delete/5
+        #region POST: RoomCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            if (_context.RoomCategories == null)
+            if (_unit.RoomCategory == null)
             {
-                return Problem("Entity set 'AppDbContext.RoomCategories'  is null.");
+                return Problem("Entity set '_unit.RoomCategory'  is null.");
             }
-            var roomCategory = await _context.RoomCategories.FindAsync(id);
+            var roomCategory = _unit.RoomCategory.GetFirstOrDefault(m => m.Id == id);
             if (roomCategory != null)
             {
-                _context.RoomCategories.Remove(roomCategory);
+                _unit.RoomCategory.Remove(roomCategory);
             }
 
-            await _context.SaveChangesAsync();
+            _unit.Commit();
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region RoomCategoryExists()
         private bool RoomCategoryExists(int id)
         {
-            return _context.RoomCategories.Any(e => e.Id == id);
+            return _unit.RoomCategory.CategoryExists(id);
         }
+        #endregion  
     }
 }

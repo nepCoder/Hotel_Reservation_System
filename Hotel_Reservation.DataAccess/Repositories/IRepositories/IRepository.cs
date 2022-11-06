@@ -10,6 +10,8 @@ namespace Hotel_Reservation.DataAccess.Repositories.IRepositories
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
+
+        bool Contains(T entity);
         
     }
 }
