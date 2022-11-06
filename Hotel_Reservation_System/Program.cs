@@ -2,6 +2,9 @@ using Hotel_Reservation.DataAccess.Context;
 using Hotel_Reservation.DataAccess.Repositories;
 using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

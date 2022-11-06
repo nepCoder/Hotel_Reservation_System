@@ -23,8 +23,7 @@ namespace Hotel_Reservation_System.Controllers
         #region GET: Rooms
         public IActionResult Index()
         {
-            IEnumerable<Room> roomList = _unit.Room.GetAll();
-            return View(roomList);
+            return View();
         }
         #endregion
 
@@ -198,6 +197,20 @@ namespace Hotel_Reservation_System.Controllers
         {
             return _unit.Room.Contains(_unit.Room.GetFirstOrDefault(m => m.Id == id));
         }
+        #endregion
+
+
+        #region API Calls
+        /// <summary>
+        /// Rooms/GetAll
+        /// </summary>
+        /// <returns>json object of RoomList</returns>
+        public IActionResult GetAll()
+        {
+            IEnumerable<Room> roomList = _unit.Room.GetAll(includeProp:"RoomCategory");
+            return Json(new { data = roomList });
+        }
+
         #endregion
     }
 

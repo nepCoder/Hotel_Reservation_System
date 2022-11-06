@@ -25,9 +25,16 @@ namespace Hotel_Reservation.DataAccess.Repositories
             return dbSet.Contains(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProp=null)
         {
             IQueryable<T> query = dbSet;
+            if(includeProp != null)
+            {
+                foreach(var prop in includeProp.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             return query.ToList();
         }
 
@@ -36,9 +43,16 @@ namespace Hotel_Reservation.DataAccess.Repositories
             
         //}
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProp = null)
         {
             IQueryable<T> query = dbSet;
+            if(includeProp != null)
+            {
+                foreach (var prop in includeProp.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             return query.FirstOrDefault(filter);
         }
 

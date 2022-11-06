@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace HotelReservation.Entities
 {
@@ -16,8 +17,9 @@ namespace HotelReservation.Entities
         public int RoomCategoryId { get; set; }
         public string? Status { get; set; }
         public double? Cost { get; set; }
-
+        [JsonIgnore]
         public virtual RoomCategory RoomCategory { get; set; } = null!;
+        [JsonIgnore]
         public virtual ICollection<Booking> Bookings { get; set; }
     }
 }
