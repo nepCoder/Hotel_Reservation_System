@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Hotel_Reservation.DataAccess.Context;
 using HotelReservation.Entities;
 using Hotel_Reservation.DataAccess.Repositories.IRepositories;
 
@@ -192,13 +191,12 @@ namespace Hotel_Reservation_System.Controllers
         }
         #endregion
 
-        #region RoomExists(id);
+        #region RoomExists(id)
         private bool RoomExists(int id)
         {
             return _unit.Room.Contains(_unit.Room.GetFirstOrDefault(m => m.Id == id));
         }
         #endregion
-
 
         #region API Calls
         /// <summary>
